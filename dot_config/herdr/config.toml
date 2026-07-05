@@ -1,0 +1,75 @@
+[keys]
+# Prefix used before Herdr-specific shortcuts.
+prefix = "ctrl+a"
+
+# Open the workspace navigation picker directly.
+workspace_picker = "ctrl+w"
+
+# Move between panes in the current workspace.
+focus_pane_left = "cmd+left"
+focus_pane_right = "cmd+right"
+focus_pane_up = "cmd+up"
+focus_pane_down = "cmd+down"
+
+# Move between tabs in the current workspace.
+previous_tab = "cmd+ctrl+left"
+next_tab = "cmd+ctrl+right"
+
+# Move between workspaces.
+previous_workspace = "cmd+ctrl+up"
+next_workspace = "cmd+ctrl+down"
+
+[[keys.command]]
+# Open a temporary lazygit pane from the current workspace.
+key = "prefix+ctrl+g"
+type = "pane"
+description = "Open lazygit"
+command = "lazygit"
+
+[[keys.command]]
+# Open a temporary Neovim pane from the current workspace.
+key = "prefix+ctrl+e"
+type = "pane"
+description = "Open nvim"
+command = "nvim"
+
+[ui]
+# Put agents that need attention near the top of the panel.
+agent_panel_sort = "priority"
+
+# Show detected agent names in split pane borders.
+show_agent_labels_on_pane_borders = true
+
+[ui.toast]
+# Use OS notifications for background agent state changes.
+delivery = "system"
+delay_seconds = 1
+
+[session]
+# Resume supported agent panes after a Herdr server restart.
+resume_agents_on_restore = true
+
+[theme]
+
+[theme.custom]
+# Base terminal-aligned surfaces.
+panel_bg = "#020b16"
+surface_dim = "#030d18"
+surface0 = "#04111e"
+surface1 = "#071827"
+overlay0 = "#1b3144"
+overlay1 = "#294056"
+
+# Cold text palette.
+text = "#c8d7e8"
+subtext0 = "#8ea3b8"
+
+# Workspace and agent status colors.
+green = "#a5e9ff"
+yellow = "#4f8cff"
+
+# Tab and accent colors.
+accent = "#2f5f78"
+blue = "#2f5f78"
+teal = "#67d4e8"
+mauve = "#8fa8c8"
