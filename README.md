@@ -12,6 +12,15 @@ Dotfiles managed with [chezmoi](https://www.chezmoi.io/).
 | `~/.config/herdr` | herdr |
 | `~/.codex` | Codex CLI (AGENTS.md, agents, hooks, plans) |
 | `~/.claude` | Claude Code user scope (CLAUDE.md, settings, agents, commands, skills) |
+| `~/.config/home-manager`, `~/.config/nix` | Nix / home-manager |
+| `~/.zshrc`, `~/.zshenv`, `~/.zprofile`, `~/.config/zeno` | zsh |
+
+## Never add these
+
+This is a public repo. Never `chezmoi add` the following, they hold live credentials:
+
+- `~/.secrets`
+- `~/.secretsenv.yml`
 
 ## Setup
 
