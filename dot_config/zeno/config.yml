@@ -1,0 +1,339 @@
+completions:
+  - name: nb edit
+    patterns:
+      - "^nb e( .*)? $"
+      - "^nb edit( .*)? $"
+    sourceCommand: "nb ls --no-color | grep -E '^\\[[0-9]+\\]'"
+    options:
+      --ansi: true
+      --prompt: "'nb edit >'"
+      --preview: "echo {} | sed -E 's/^\\[([0-9]+)\\].*/\\1/' | xargs nb show"
+    callback: "sed -E 's/^\\[([0-9]+)\\].*/\\1/'"
+  - name: nb subcommands
+    patterns:
+      - ^\s*nb\s*$
+      - ^\s*nb\s+help\s*$
+    sourceCommand: nb subcommands
+    options:
+      --prompt: "'nb subcommand >'"
+    callback: echo {}
+
+snippets:
+  # nb
+  - name: Edit Note
+    keyword: nbe
+    snippet: nb edit
+
+  - name: List Note
+    keyword: nbl
+    snippet: nb ls --limit 20
+
+  - name: List All Note
+    keyword: nbla
+    snippet: nb ls --all
+
+  - name: nb search
+    keyword: nbg
+    snippet: rg "{{keyword}}" "$(nb notebooks current --path)"
+
+  # shell
+  - name: ls -l
+    keyword: ll
+    snippet: ls -l
+
+  - name: grep
+    keyword: "@g"
+    snippet: grep
+    context:
+      lbuffer: '.+'
+
+  - name: ls grep
+    keyword: lsg
+    snippet: ls | grep
+
+  - name: pnpm typo
+    keyword: pnm
+    snippet: pnpm
+
+  - name: codex
+    keyword: cx
+    snippet: codex
+
+  - name: codex update
+    keyword: cxup
+    snippet: "sh -c 'curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_NON_INTERACTIVE=1 sh'"
+
+  - name: ccsession
+    keyword: ccs
+    snippet: ccsession
+
+  - name: ccsession codex
+    keyword: ccsx
+    snippet: ccsession --codex
+
+  - name: eval sheldon
+    keyword: evshelldon
+    snippet: eval "$(sheldon source)"
+
+  - name: source zshrc
+    keyword: evsh
+    snippet: source ~/.zshrc
+
+  - name: edit zshrc
+    keyword: edsh
+    snippet: nvim ~/.zshrc
+
+  - name: edit sheldon
+    keyword: edshelldon
+    snippet: EDITOR=nvim sheldon edit
+
+  - name: edit nvim config
+    keyword: ednv
+    snippet: nvim ~/.config/nvim
+
+  - name: edit claude config
+    keyword: edcc
+    snippet: nvim ~/.claude/
+
+  - name: edit wezterm config
+    keyword: edwez
+    snippet: nvim ~/.config/wezterm/wezterm.lua
+
+  # git
+  - name: git switch
+    keyword: gsw
+    snippet: git switch
+
+  - name: git switch -c
+    keyword: gswc
+    snippet: git switch -c
+
+  - name: git status
+    keyword: gs
+    snippet: git status
+
+  - name: git fetch
+    keyword: gf
+    snippet: git fetch
+
+  - name: git merge
+    keyword: gm
+    snippet: git merge
+
+  - name: git commit -m
+    keyword: gc
+    snippet: git commit -m
+
+  - name: git push
+    keyword: gp
+    snippet: git push
+
+  - name: git branch
+    keyword: gb
+    snippet: git branch
+
+  - name: git branch grep
+    keyword: gbg
+    snippet: git branch | grep
+
+  - name: git grep
+    keyword: gg
+    snippet: git grep
+
+  - name: git log
+    keyword: gl
+    snippet: git log
+
+  - name: git diff
+    keyword: gd
+    snippet: git diff
+
+  - name: git diff --name-only
+    keyword: gdn
+    snippet: git diff --name-only
+
+  - name: git diff --cached
+    keyword: gdc
+    snippet: git diff --cached
+
+  - name: git worktree list
+    keyword: gwl
+    snippet: git worktree list
+
+  - name: git worktree add
+    keyword: gwa
+    snippet: git worktree add
+
+  - name: git worktree remove
+    keyword: gwd
+    snippet: git worktree remove
+
+  - name: lazygit
+    keyword: lg
+    snippet: lazygit
+
+  - name: gh pr base branch
+    keyword: ghbase
+    snippet: gh pr view {{pr_number}} --json baseRefName --jq ".baseRefName"
+
+  # docker
+  - name: docker compose
+    keyword: dc
+    snippet: docker compose
+
+  - name: docker compose build
+    keyword: dcb
+    snippet: docker compose build
+
+  - name: docker compose up -d
+    keyword: dcu
+    snippet: docker compose up -d
+
+  - name: docker compose up -d --build
+    keyword: dcub
+    snippet: docker compose up -d --build
+
+  - name: docker compose down
+    keyword: dcd
+    snippet: docker compose down
+
+  - name: docker compose stop
+    keyword: dcs
+    snippet: docker compose stop
+
+  - name: docker compose exec
+    keyword: dce
+    snippet: docker compose exec
+
+  - name: docker attach
+    keyword: da
+    snippet: docker attach
+
+  - name: docker system prune
+    keyword: dsp
+    snippet: docker system prune -a
+
+  - name: lazydocker
+    keyword: ld
+    snippet: lazydocker
+
+  # tmux
+  - name: tmux
+    keyword: tx
+    snippet: tmux
+
+  - name: tmux new session
+    keyword: tns
+    snippet: tmux new -s
+
+  - name: tmux attach
+    keyword: tat
+    snippet: tmux attach -t
+
+  - name: tmux switch client
+    keyword: tst
+    snippet: tmux switch-client -t
+
+  - name: tmux list sessions
+    keyword: tls
+    snippet: tmux list-sessions
+
+  - name: tmux kill session
+    keyword: tks
+    snippet: tmux kill-session -t
+
+  # nvim
+  - name: nvim
+    keyword: nv
+    snippet: nvim
+
+  # aws
+  - name: aws dev
+    keyword: aws_dev
+    snippet: aws-vault exec platform-dev
+
+  - name: aws prod
+    keyword: aws_prod
+    snippet: aws-vault exec platform-prod
+
+  - name: codex aws dev
+    keyword: cx_aws_dev
+    snippet: codex-aws-dev
+
+  - name: codex aws prod
+    keyword: cx_aws_prod
+    snippet: codex-aws-prod
+
+  - name: aws reportdb dev
+    keyword: aws_reportdb_dev
+    snippet: >-
+      aws ssm start-session --target i-08f783a0f7463316e
+      --document-name AWS-StartPortForwardingSessionToRemoteHost
+      --parameters '{"portNumber":["3306"], "localPortNumber":["3307"],
+      "host":["toridori-marketing-api-re-reportclusterdev41f84813-yabetm0aefkj.cluster-c4syx4bfqtu3.ap-northeast-1.rds.amazonaws.com"]}'
+
+  - name: overflow dev
+    keyword: of_dev
+    snippet: aws-vault exec overflow-staff-dev
+
+  - name: overflow prod
+    keyword: of_prod
+    snippet: aws-vault exec overflow-staff-prod
+
+  - name: crammy dev
+    keyword: crammy_dev
+    snippet: aws-vault exec crammy-dev
+
+  - name: crammy prod
+    keyword: crammy_prod
+    snippet: aws-vault exec crammy-prod
+
+  # wezterm
+  - name: wezterm new workspace
+    keyword: wta
+    snippet: wezterm cli spawn --new-window --workspace "{{workspace_name}}"
+
+  - name: wezterm list
+    keyword: wtl
+    snippet: wezterm cli list
+
+  - name: wezterm list clients
+    keyword: wtc
+    snippet: wezterm cli list-clients
+
+  # misc
+  - name: nix develop
+    keyword: nxdev
+    snippet: nix develop
+
+  - name: home-manager
+    keyword: hm
+    snippet: home-manager
+
+  - name: oj test ruby
+    keyword: ojt
+    snippet: oj t -c " ruby main.rb" -d test
+
+  - name: claude
+    keyword: cl
+    snippet: claude
+
+  - name: specfit init
+    keyword: specfit_init
+    snippet: uvx --from git+https://github.com/github/spec-kit.git specify init .
+
+  - name: kiro
+    keyword: kiro
+    snippet: kiro-cli
+
+  - name: memoli today
+    keyword: met
+    snippet: memoli today
+
+  - name: edit nb
+    keyword: ednb
+    snippet: nv ~/.nb/
+
+  - name: claude mem worker
+    keyword: claude-mem
+    snippet: bun "/Users/fujitanisora/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"
