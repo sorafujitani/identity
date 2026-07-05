@@ -1,0 +1,71 @@
+# foreground = ffffff
+# background = 282c34
+
+# Appearance
+background = #020b16
+background-opacity = 0.95
+cursor-color = #7dd3fc
+font-family = JetBrains Mono
+font-size = 15
+theme = Night Owl
+
+# Window
+macos-non-native-fullscreen = true
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = hidden
+notify-on-command-finish = unfocused
+notify-on-command-finish-after = 10s
+quick-terminal-autohide = true
+quick-terminal-position = top
+quick-terminal-screen = mouse
+split-divider-color = #2a2a2a
+split-preserve-zoom = navigation
+unfocused-split-opacity = 1
+window-decoration = none
+window-show-tab-bar = never
+
+# Keybinds
+keybind = alt+enter=toggle_fullscreen
+keybind = alt+left=previous_tab
+keybind = alt+right=next_tab
+# Let Herdr handle these while a Herdr session is focused.
+# AB test: enabling the Ghostty bindings below consumes the keys before Herdr.
+# Original Ghostty split navigation:
+# keybind = cmd+arrow_left=goto_split:left
+# keybind = cmd+arrow_right=goto_split:right
+# keybind = cmd+arrow_up=goto_split:up
+# keybind = cmd+arrow_down=goto_split:down
+keybind = cmd+arrow_left=unbind
+keybind = cmd+arrow_right=unbind
+keybind = cmd+arrow_up=unbind
+keybind = cmd+arrow_down=unbind
+# Disable default Ghostty split resize so Herdr can use cmd+ctrl+arrows.
+# Original Ghostty defaults:
+# keybind = cmd+ctrl+arrow_left=resize_split:left,10
+# keybind = cmd+ctrl+arrow_right=resize_split:right,10
+# keybind = cmd+ctrl+arrow_up=resize_split:up,10
+# keybind = cmd+ctrl+arrow_down=resize_split:down,10
+keybind = cmd+ctrl+arrow_left=unbind
+keybind = cmd+ctrl+arrow_right=unbind
+keybind = cmd+ctrl+arrow_up=unbind
+keybind = cmd+ctrl+arrow_down=unbind
+keybind = cmd+comma=new_split:right
+keybind = cmd+f=start_search
+keybind = cmd+g=navigate_search:next
+keybind = cmd+period=new_split:down
+keybind = cmd+shift+enter=toggle_split_zoom
+keybind = cmd+shift+g=navigate_search:previous
+keybind = cmd+shift+m=toggle_mouse_reporting
+keybind = cmd+shift+p=toggle_command_palette
+keybind = cmd+shift+r=toggle_readonly
+keybind = performable:escape=end_search
+keybind = global:ctrl+backquote=toggle_quick_terminal
+keybind = super+1=unbind
+keybind = super+2=unbind
+keybind = super+3=unbind
+keybind = super+4=unbind
+keybind = super+5=unbind
+keybind = super+6=unbind
+keybind = super+7=unbind
+keybind = super+8=unbind
+keybind = super+9=unbind
