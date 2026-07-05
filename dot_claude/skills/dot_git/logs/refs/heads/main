@@ -1,0 +1,23 @@
+0000000000000000000000000000000000000000 682a556f8a4da903bf4e37758e12ff12e171d678 fujitani sora <fujitanisora0414@gmail.com> 1771654383 +0900	clone: from https://github.com/sorafujitani/skills.git
+682a556f8a4da903bf4e37758e12ff12e171d678 16378195be6db52dc5edc02a89a39d2a36ee77b8 fujitani sora <fujitanisora0414@gmail.com> 1771655198 +0900	commit: feat: karin-info agentskill
+16378195be6db52dc5edc02a89a39d2a36ee77b8 04c47ca576b43f122e63de353537b164c2e3b3ed fujitani sora <fujitanisora0414@gmail.com> 1771655345 +0900	commit: docs: add project overview, installation guide, and skill listing to README
+04c47ca576b43f122e63de353537b164c2e3b3ed 07e33b5de09d7a658fe28cef3cccd18e1b00f0de fujitani sora <fujitanisora0414@gmail.com> 1771655725 +0900	commit: feat: set up plugin marketplace and restructure karin-info as plugin
+07e33b5de09d7a658fe28cef3cccd18e1b00f0de 09ddeef7bc5bdb61469a381b3f4f0140e97339fa fujitani sora <fujitanisora0414@gmail.com> 1771656042 +0900	commit: fix: align marketplace and plugin config with official schema
+09ddeef7bc5bdb61469a381b3f4f0140e97339fa 0e9614dc6ce3f2bac26f97afb1c2cc7b70f5ae0b fujitani sora <fujitanisora0414@gmail.com> 1771657437 +0900	commit: improve: add sitemap-based data collection for karin-official.com
+0e9614dc6ce3f2bac26f97afb1c2cc7b70f5ae0b 8bafb58f21bb804b53b31445fb825f425810bf16 fujitani sora <fujitanisora0414@gmail.com> 1771657543 +0900	commit: refactor: restructure skill docs for better AI readability
+8bafb58f21bb804b53b31445fb825f425810bf16 242f3578f7d9f0f9627712bc1222d0424d897e87 fujitani sora <fujitanisora0414@gmail.com> 1771657866 +0900	commit: chore: bump karin-info to v1.1.0, remove version from plugin.json
+242f3578f7d9f0f9627712bc1222d0424d897e87 998bbb9706c998bece594da221713e7f6140cd7e fujitani sora <fujitanisora0414@gmail.com> 1777350469 +0900	commit: skill:local-repo-finder
+998bbb9706c998bece594da221713e7f6140cd7e 9fc6a488f5f49b2768300ba3d6414415ab8005cf fujitani sora <fujitanisora0414@gmail.com> 1777365147 +0900	commit: refactor!: migrate to flat agent-skills layout (npx skills compatible)
+9fc6a488f5f49b2768300ba3d6414415ab8005cf 93b6c1021bca95845785c574c58eabe321b98408 fujitani sora <fujitanisora0414@gmail.com> 1777365983 +0900	commit: refactor!: rename skills to follow Anthropic naming-convention best practice
+93b6c1021bca95845785c574c58eabe321b98408 711fa36d1297c5aed6ed13d2a9b6ea4859801966 fujitani sora <fujitanisora0414@gmail.com> 1777368371 +0900	commit: chore: collapse repo into ~/.claude/skills (no more dev/skills + symlinks)
+711fa36d1297c5aed6ed13d2a9b6ea4859801966 4bd4a30f983cf8e0c84d2daca5b31ffce6ce43ac fujitani sora <fujitanisora0414@gmail.com> 1778129466 +0900	commit: skill:doc-prerequisite-knowledge
+4bd4a30f983cf8e0c84d2daca5b31ffce6ce43ac 6400d390743925626cda9fd675c66f41cf7bc93c fujitani sora <fujitanisora0414@gmail.com> 1778129822 +0900	commit: docs: list doc-prerequisite-knowledge in catalog
+6400d390743925626cda9fd675c66f41cf7bc93c b62c9e3b0daf65ddcf823a5ffaf750b641690dfc fujitani sora <fujitanisora0414@gmail.com> 1778130841 +0900	commit: skill(doc-prerequisite-knowledge): improve output accessibility
+b62c9e3b0daf65ddcf823a5ffaf750b641690dfc f63bdbff05671958f15585d662c78fd74ac2de5f fujitani sora <fujitanisora0414@gmail.com> 1778220842 +0900	commit: refactor!: drop -ing forms from skill names for simpler, noun-phrase naming
+f63bdbff05671958f15585d662c78fd74ac2de5f 48a4913a70051d04db223c97eba27bbf1b37585b fujitani sora <fujitanisora0414@gmail.com> 1778265667 +0900	commit: skill:graph-think-map
+48a4913a70051d04db223c97eba27bbf1b37585b d5d5c81dc6974f9013e9e399a800419c8775be58 fujitani sora <fujitanisora0414@gmail.com> 1778269802 +0900	commit: skill:skill-zip
+d5d5c81dc6974f9013e9e399a800419c8775be58 23edce4f486645fc7b1c062d43a0bfc472e11529 fujitani sora <fujitanisora0414@gmail.com> 1778270375 +0900	commit: skill(skill-zip): change default output dir from Desktop to Downloads
+23edce4f486645fc7b1c062d43a0bfc472e11529 c5a74b42c9655b0700b137d85af4534a6ba4642d fujitani sora <fujitanisora0414@gmail.com> 1779702407 +0900	commit: faet: ts-lint-searcher
+c5a74b42c9655b0700b137d85af4534a6ba4642d 094001a46be9ddfaf4dfe91319c5b7f6e849dcb2 fujitani sora <fujitanisora0414@gmail.com> 1779702853 +0900	commit: readme
+094001a46be9ddfaf4dfe91319c5b7f6e849dcb2 df114694c2e2c217a086c40528db3c151695ef19 fujitani sora <fujitanisora0414@gmail.com> 1783069776 +0900	commit: skill:sora-mode
+df114694c2e2c217a086c40528db3c151695ef19 4e9a2aecd64bcb9ec181d62f3c215adb113bc4c8 fujitani sora <fujitanisora0414@gmail.com> 1783070676 +0900	commit: sora-mode: brain path to ~/brain

@@ -1,0 +1,6 @@
+{
+  "eval_id": 1,
+  "eval_name": "eval-1-typescript-framework",
+  "prompt": "honojs/hono を初見で読み、半日でフレームワークの全体像と中核フローを掴むためのガイド成果物一式を出力する。",
+  "assertions": []
+}

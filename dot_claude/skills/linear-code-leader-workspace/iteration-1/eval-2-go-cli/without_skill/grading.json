@@ -1,0 +1,57 @@
+{
+  "eval_name": "eval-2-go-cli",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "成果物ファイルが3つ以上保存されている",
+      "passed": true,
+      "evidence": "7 files: ['00_README.md', '01_bubbletea_primer.md', '02_overview_architecture.md', '03_flow_cli_render.md', '04_flow_tui_render.md', '05_call_graph.md', '06_reading_checklist.md']"
+    },
+    {
+      "text": "Mermaid のアーキテクチャ図 (graph/flowchart) が含まれる",
+      "passed": false,
+      "evidence": "no mermaid graph/flowchart"
+    },
+    {
+      "text": "Mermaid のシーケンス図 (sequenceDiagram) が Phase 4 にある",
+      "passed": false,
+      "evidence": "no sequenceDiagram"
+    },
+    {
+      "text": "ファイル:行番号 参照が3件以上ある (フロー追跡が実コードに紐付いている)",
+      "passed": true,
+      "evidence": "158 file:line references"
+    },
+    {
+      "text": "冒頭でスコープ宣言が行われている (Phase 0)",
+      "passed": false,
+      "evidence": "no scope statement"
+    },
+    {
+      "text": "統合ドキュメント (UNDERSTANDING.md 相当) が存在する (Phase 6)",
+      "passed": false,
+      "evidence": "missing"
+    },
+    {
+      "text": "用語集 / glossary セクションが存在する (Phase 3)",
+      "passed": false,
+      "evidence": "missing"
+    },
+    {
+      "text": "実リポジトリのファイル/シンボルへの言及が3つ以上 (glow)",
+      "passed": true,
+      "evidence": "6/6 expected paths referenced"
+    },
+    {
+      "text": "代表フローのキーワード (glow, Markdown, render…) が3つ以上含まれる",
+      "passed": true,
+      "evidence": "5/5 flow keywords matched"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 5,
+    "total": 9,
+    "pass_rate": 0.4444
+  }
+}

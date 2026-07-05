@@ -1,0 +1,434 @@
+{
+  "metadata": {
+    "skill_name": "linear-code-leader",
+    "timestamp": "2026-05-18T16:14:21.340312+00:00",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "eval-1-typescript-framework",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 494.03,
+        "tokens": 97650
+      },
+      "expectations": [
+        {
+          "text": "成果物ファイルが3つ以上保存されている",
+          "passed": true,
+          "evidence": "7 files: ['00_scope.md', '01_summary.md', '02_architecture.md', '03_domain.md', '04_flow.md', '05_concerns.md', 'UNDERSTANDING.md']"
+        },
+        {
+          "text": "Mermaid のアーキテクチャ図 (graph/flowchart) が含まれる",
+          "passed": true,
+          "evidence": "mermaid graph/flowchart block found"
+        },
+        {
+          "text": "Mermaid のシーケンス図 (sequenceDiagram) が Phase 4 にある",
+          "passed": true,
+          "evidence": "mermaid sequenceDiagram block found"
+        },
+        {
+          "text": "ファイル:行番号 参照が3件以上ある (フロー追跡が実コードに紐付いている)",
+          "passed": true,
+          "evidence": "63 file:line references"
+        },
+        {
+          "text": "冒頭でスコープ宣言が行われている (Phase 0)",
+          "passed": true,
+          "evidence": "found in 00_scope.md"
+        },
+        {
+          "text": "統合ドキュメント (UNDERSTANDING.md 相当) が存在する (Phase 6)",
+          "passed": true,
+          "evidence": "UNDERSTANDING.md found"
+        },
+        {
+          "text": "用語集 / glossary セクションが存在する (Phase 3)",
+          "passed": true,
+          "evidence": "glossary section found"
+        },
+        {
+          "text": "実リポジトリのファイル/シンボルへの言及が3つ以上 (hono)",
+          "passed": true,
+          "evidence": "5/5 expected paths referenced"
+        },
+        {
+          "text": "代表フローのキーワード (リクエスト, ハンドラ, request…) が3つ以上含まれる",
+          "passed": true,
+          "evidence": "5/5 flow keywords matched"
+        }
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "eval-1-typescript-framework",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4444,
+        "passed": 4,
+        "failed": 5,
+        "total": 9,
+        "time_seconds": 637.08,
+        "tokens": 106500
+      },
+      "expectations": [
+        {
+          "text": "成果物ファイルが3つ以上保存されている",
+          "passed": true,
+          "evidence": "9 files: ['00-overview.md', '01-architecture-map.md', '02-core-request-flow.md', '03-router-deep-dive.md', '04-context-and-middleware.md', '05-typescript-and-validator.md', '06-reading-roadmap.md', '07-express-vs-hono-cheatsheet.md']"
+        },
+        {
+          "text": "Mermaid のアーキテクチャ図 (graph/flowchart) が含まれる",
+          "passed": false,
+          "evidence": "no mermaid graph/flowchart"
+        },
+        {
+          "text": "Mermaid のシーケンス図 (sequenceDiagram) が Phase 4 にある",
+          "passed": false,
+          "evidence": "no sequenceDiagram"
+        },
+        {
+          "text": "ファイル:行番号 参照が3件以上ある (フロー追跡が実コードに紐付いている)",
+          "passed": true,
+          "evidence": "38 file:line references"
+        },
+        {
+          "text": "冒頭でスコープ宣言が行われている (Phase 0)",
+          "passed": false,
+          "evidence": "no scope statement"
+        },
+        {
+          "text": "統合ドキュメント (UNDERSTANDING.md 相当) が存在する (Phase 6)",
+          "passed": false,
+          "evidence": "missing"
+        },
+        {
+          "text": "用語集 / glossary セクションが存在する (Phase 3)",
+          "passed": false,
+          "evidence": "missing"
+        },
+        {
+          "text": "実リポジトリのファイル/シンボルへの言及が3つ以上 (hono)",
+          "passed": true,
+          "evidence": "5/5 expected paths referenced"
+        },
+        {
+          "text": "代表フローのキーワード (リクエスト, ハンドラ, request…) が3つ以上含まれる",
+          "passed": true,
+          "evidence": "5/5 flow keywords matched"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "eval-2-go-cli",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 473.06,
+        "tokens": 93027
+      },
+      "expectations": [
+        {
+          "text": "成果物ファイルが3つ以上保存されている",
+          "passed": true,
+          "evidence": "7 files: ['00_scope.md', '01_summary.md', '02_architecture.md', '03_domain.md', '04_flow.md', '05_concerns.md', 'UNDERSTANDING.md']"
+        },
+        {
+          "text": "Mermaid のアーキテクチャ図 (graph/flowchart) が含まれる",
+          "passed": true,
+          "evidence": "mermaid graph/flowchart block found"
+        },
+        {
+          "text": "Mermaid のシーケンス図 (sequenceDiagram) が Phase 4 にある",
+          "passed": true,
+          "evidence": "mermaid sequenceDiagram block found"
+        },
+        {
+          "text": "ファイル:行番号 参照が3件以上ある (フロー追跡が実コードに紐付いている)",
+          "passed": true,
+          "evidence": "215 file:line references"
+        },
+        {
+          "text": "冒頭でスコープ宣言が行われている (Phase 0)",
+          "passed": true,
+          "evidence": "found in 00_scope.md"
+        },
+        {
+          "text": "統合ドキュメント (UNDERSTANDING.md 相当) が存在する (Phase 6)",
+          "passed": true,
+          "evidence": "UNDERSTANDING.md found"
+        },
+        {
+          "text": "用語集 / glossary セクションが存在する (Phase 3)",
+          "passed": true,
+          "evidence": "glossary section found"
+        },
+        {
+          "text": "実リポジトリのファイル/シンボルへの言及が3つ以上 (glow)",
+          "passed": true,
+          "evidence": "5/6 expected paths referenced"
+        },
+        {
+          "text": "代表フローのキーワード (glow, Markdown, render…) が3つ以上含まれる",
+          "passed": true,
+          "evidence": "5/5 flow keywords matched"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "eval-2-go-cli",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4444,
+        "passed": 4,
+        "failed": 5,
+        "total": 9,
+        "time_seconds": 529.29,
+        "tokens": 91630
+      },
+      "expectations": [
+        {
+          "text": "成果物ファイルが3つ以上保存されている",
+          "passed": true,
+          "evidence": "7 files: ['00_README.md', '01_bubbletea_primer.md', '02_overview_architecture.md', '03_flow_cli_render.md', '04_flow_tui_render.md', '05_call_graph.md', '06_reading_checklist.md']"
+        },
+        {
+          "text": "Mermaid のアーキテクチャ図 (graph/flowchart) が含まれる",
+          "passed": false,
+          "evidence": "no mermaid graph/flowchart"
+        },
+        {
+          "text": "Mermaid のシーケンス図 (sequenceDiagram) が Phase 4 にある",
+          "passed": false,
+          "evidence": "no sequenceDiagram"
+        },
+        {
+          "text": "ファイル:行番号 参照が3件以上ある (フロー追跡が実コードに紐付いている)",
+          "passed": true,
+          "evidence": "158 file:line references"
+        },
+        {
+          "text": "冒頭でスコープ宣言が行われている (Phase 0)",
+          "passed": false,
+          "evidence": "no scope statement"
+        },
+        {
+          "text": "統合ドキュメント (UNDERSTANDING.md 相当) が存在する (Phase 6)",
+          "passed": false,
+          "evidence": "missing"
+        },
+        {
+          "text": "用語集 / glossary セクションが存在する (Phase 3)",
+          "passed": false,
+          "evidence": "missing"
+        },
+        {
+          "text": "実リポジトリのファイル/シンボルへの言及が3つ以上 (glow)",
+          "passed": true,
+          "evidence": "6/6 expected paths referenced"
+        },
+        {
+          "text": "代表フローのキーワード (glow, Markdown, render…) が3つ以上含まれる",
+          "passed": true,
+          "evidence": "5/5 flow keywords matched"
+        }
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "eval-3-python-library",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 488.61,
+        "tokens": 93500
+      },
+      "expectations": [
+        {
+          "text": "成果物ファイルが3つ以上保存されている",
+          "passed": true,
+          "evidence": "7 files: ['00_scope.md', '01_summary.md', '02_architecture.md', '03_domain.md', '04_flow.md', '05_concerns.md', 'UNDERSTANDING.md']"
+        },
+        {
+          "text": "Mermaid のアーキテクチャ図 (graph/flowchart) が含まれる",
+          "passed": true,
+          "evidence": "mermaid graph/flowchart block found"
+        },
+        {
+          "text": "Mermaid のシーケンス図 (sequenceDiagram) が Phase 4 にある",
+          "passed": true,
+          "evidence": "mermaid sequenceDiagram block found"
+        },
+        {
+          "text": "ファイル:行番号 参照が3件以上ある (フロー追跡が実コードに紐付いている)",
+          "passed": true,
+          "evidence": "138 file:line references"
+        },
+        {
+          "text": "冒頭でスコープ宣言が行われている (Phase 0)",
+          "passed": true,
+          "evidence": "found in 00_scope.md"
+        },
+        {
+          "text": "統合ドキュメント (UNDERSTANDING.md 相当) が存在する (Phase 6)",
+          "passed": true,
+          "evidence": "UNDERSTANDING.md found"
+        },
+        {
+          "text": "用語集 / glossary セクションが存在する (Phase 3)",
+          "passed": true,
+          "evidence": "glossary section found"
+        },
+        {
+          "text": "実リポジトリのファイル/シンボルへの言及が3つ以上 (httpx)",
+          "passed": true,
+          "evidence": "6/6 expected paths referenced"
+        },
+        {
+          "text": "代表フローのキーワード (httpx.get, Request, Response…) が3つ以上含まれる",
+          "passed": true,
+          "evidence": "5/5 flow keywords matched"
+        }
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "eval-3-python-library",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4444,
+        "passed": 4,
+        "failed": 5,
+        "total": 9,
+        "time_seconds": 447.94,
+        "tokens": 97805
+      },
+      "expectations": [
+        {
+          "text": "成果物ファイルが3つ以上保存されている",
+          "passed": true,
+          "evidence": "6 files: ['00-overview.md', '01-architecture-layers.md', '02-call-path-public-to-transport.md', '03-transport-abstraction.md', '04-key-objects-quickref.md', '05-reading-plan-half-day.md']"
+        },
+        {
+          "text": "Mermaid のアーキテクチャ図 (graph/flowchart) が含まれる",
+          "passed": false,
+          "evidence": "no mermaid graph/flowchart"
+        },
+        {
+          "text": "Mermaid のシーケンス図 (sequenceDiagram) が Phase 4 にある",
+          "passed": false,
+          "evidence": "no sequenceDiagram"
+        },
+        {
+          "text": "ファイル:行番号 参照が3件以上ある (フロー追跡が実コードに紐付いている)",
+          "passed": true,
+          "evidence": "35 file:line references"
+        },
+        {
+          "text": "冒頭でスコープ宣言が行われている (Phase 0)",
+          "passed": false,
+          "evidence": "no scope statement"
+        },
+        {
+          "text": "統合ドキュメント (UNDERSTANDING.md 相当) が存在する (Phase 6)",
+          "passed": false,
+          "evidence": "missing"
+        },
+        {
+          "text": "用語集 / glossary セクションが存在する (Phase 3)",
+          "passed": false,
+          "evidence": "missing"
+        },
+        {
+          "text": "実リポジトリのファイル/シンボルへの言及が3つ以上 (httpx)",
+          "passed": true,
+          "evidence": "6/6 expected paths referenced"
+        },
+        {
+          "text": "代表フローのキーワード (httpx.get, Request, Response…) が3つ以上含まれる",
+          "passed": true,
+          "evidence": "5/5 flow keywords matched"
+        }
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 485.2333,
+        "stddev": 10.8852,
+        "min": 473.06,
+        "max": 494.03
+      },
+      "tokens": {
+        "mean": 94725.6667,
+        "stddev": 2543.5657,
+        "min": 93027.0,
+        "max": 97650.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.4444,
+        "stddev": 0.0,
+        "min": 0.4444,
+        "max": 0.4444
+      },
+      "time_seconds": {
+        "mean": 538.1033,
+        "stddev": 94.8775,
+        "min": 447.94,
+        "max": 637.08
+      },
+      "tokens": {
+        "mean": 98645.0,
+        "stddev": 7470.5037,
+        "min": 91630.0,
+        "max": 106500.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.5556",
+      "time_seconds": "-52.87",
+      "tokens": "-3919.3333"
+    }
+  },
+  "notes": [
+    "pass_rate delta +0.56 across all 3 evals — with_skill consistently 9/9, baseline consistently 4/9. 5 assertions baseline always misses are: Mermaid graph/flowchart, Mermaid sequenceDiagram, explicit scope statement, UNDERSTANDING.md, glossary section. Baseline doesn't read worse — it just doesn't produce in those forms.",
+    "Both configurations pass the 'file:line references' and 'real-repo paths' assertions consistently (baseline often with HIGHER counts). The skill's advantage is structural format, not depth of reading. Whether structure → user comprehension is what the qualitative review needs to judge.",
+    "Surprising: with_skill is on average ~53s FASTER and uses ~4k FEWER tokens than baseline. Likely because the prescribed phase boundaries prevent rambling; baseline tended to invent extra sections (e.g., eval-1 baseline produced 9 files vs prescribed 7).",
+    "Eval-2 baseline (glow) added a Bubble Tea primer document that with_skill did not — a useful insight the skill might want to preserve as an optional adapter for codebases with framework prerequisites.",
+    "All assertions are presence-checks (does the output contain X?) — none verify the *accuracy* of the Mermaid diagrams or the file:line refs. Qualitative review must check whether the flow traces are actually correct."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "eval_name": "eval-1-typescript-framework",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "成果物ファイルが3つ以上保存されている",
+      "passed": true,
+      "evidence": "7 files: ['00_scope.md', '01_summary.md', '02_architecture.md', '03_domain.md', '04_flow.md', '05_concerns.md', 'UNDERSTANDING.md']"
+    },
+    {
+      "text": "Mermaid のアーキテクチャ図 (graph/flowchart) が含まれる",
+      "passed": true,
+      "evidence": "mermaid graph/flowchart block found"
+    },
+    {
+      "text": "Mermaid のシーケンス図 (sequenceDiagram) が Phase 4 にある",
+      "passed": true,
+      "evidence": "mermaid sequenceDiagram block found"
+    },
+    {
+      "text": "ファイル:行番号 参照が3件以上ある (フロー追跡が実コードに紐付いている)",
+      "passed": true,
+      "evidence": "63 file:line references"
+    },
+    {
+      "text": "冒頭でスコープ宣言が行われている (Phase 0)",
+      "passed": true,
+      "evidence": "found in 00_scope.md"
+    },
+    {
+      "text": "統合ドキュメント (UNDERSTANDING.md 相当) が存在する (Phase 6)",
+      "passed": true,
+      "evidence": "UNDERSTANDING.md found"
+    },
+    {
+      "text": "用語集 / glossary セクションが存在する (Phase 3)",
+      "passed": true,
+      "evidence": "glossary section found"
+    },
+    {
+      "text": "実リポジトリのファイル/シンボルへの言及が3つ以上 (hono)",
+      "passed": true,
+      "evidence": "5/5 expected paths referenced"
+    },
+    {
+      "text": "代表フローのキーワード (リクエスト, ハンドラ, request…) が3つ以上含まれる",
+      "passed": true,
+      "evidence": "5/5 flow keywords matched"
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1.0
+  }
+}

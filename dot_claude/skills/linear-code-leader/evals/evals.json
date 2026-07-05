@@ -1,0 +1,26 @@
+{
+  "skill_name": "linear-code-leader",
+  "evals": [
+    {
+      "id": 1,
+      "name": "eval-1-typescript-framework",
+      "prompt": "あなたはコードリーディングを支援する立場です。リポジトリ honojs/hono を初見で読んで、私 (TypeScript + Express 経験者、hono は初見) が来週から hono ベースで Web API を書き始められるよう、フレームワークの全体像と中核フローを理解できる「ガイド成果物一式」を作ってください。\n\n手順:\n1. 作業ディレクトリ /tmp/eval-1 を作り、そこで `git clone --depth=1 https://github.com/honojs/hono.git` する (既に存在するなら再利用)。\n2. スコープを最初に明示してください (リポジトリ全体は広いので src/ 配下に絞ること)。半日想定。\n3. リポジトリを読み解いた成果物を、出力先ディレクトリに以下のファイル群として **必ず保存** してください:\n   - 01_summary.md (リポジトリ種類 + 1段落要約 + 役割注釈付きトップディレクトリツリー)\n   - 02_architecture.md (Mermaid のコンポーネント図 + 各コンポーネント1行説明 + 外部依存)\n   - 03_domain.md (主要型/インターフェース5-10個の関係図 + 用語集)\n   - 04_flow.md (代表フロー1本: 「あるルートへの HTTP リクエストがハンドラに到達して応答が返るまで」を Mermaid シーケンス図 + 各矢印に対応するファイルパス:行番号と関数名)\n   - 05_concerns.md (エラーハンドリング・ミドルウェア機構・ルーティング・型推論方針 を各2-4行)\n   - UNDERSTANDING.md (上記を統合した1枚もの。最後に未解決の疑問リストを付ける)\n4. 出力ファイルは必ず指定の出力先ディレクトリに書くこと。標準出力に貼り付けるだけでは不可。\n\n読みすぎないこと。フレームワーク全コードを読破するのではなく、新規ユーザーが API を書き始めるのに十分な抽出を目指してください。",
+      "expected_output": "スコープ宣言と6つのファイル (01_summary.md, 02_architecture.md, 03_domain.md, 04_flow.md, 05_concerns.md, UNDERSTANDING.md)。Phase 4 の図には実ファイルパスと関数名が含まれる。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "eval-2-go-cli",
+      "prompt": "あなたはコードリーディングを支援する立場です。Go の CLI ツール charmbracelet/glow を読みたい。私は Go の基本文法はわかるが Bubble Tea (charm 系の TUI フレームワーク) は初見。3時間想定で、CLI コマンドが起動してから Markdown が描画されるまでの実行フローを完全に追えるレベルになりたい。\n\n手順:\n1. /tmp/eval-2 を作り `git clone --depth=1 https://github.com/charmbracelet/glow.git`。\n2. スコープを宣言してから読み始める。\n3. 出力先ディレクトリに以下を保存:\n   - 01_summary.md (CLI 種類とサブコマンド構成、エントリポイントのパス)\n   - 02_architecture.md (Mermaid: コマンドパーサ ↔ TUI ↔ レンダラ ↔ ファイル/HTTP 取得 の関係)\n   - 03_domain.md (主要 struct と State 型を5-10個と関係)\n   - 04_flow.md (代表フロー: 「`glow README.md` を実行してターミナルに表示されるまで」の Mermaid シーケンス図、各矢印にファイル:行と関数名)\n   - 05_concerns.md (エラーハンドリング、設定読み込み、TUI イベントループ、テスト戦略 を各2-4行)\n   - UNDERSTANDING.md (統合)\n4. 出力は必ず指定ディレクトリへ書き出すこと。\n\n網羅読解はしない。CLI 実行の主要パス1本を確実に追えるようになることが最優先。",
+      "expected_output": "スコープ宣言 + 6ファイル。Phase 4 のシーケンス図にコマンドパース → TUI 初期化 → Markdown レンダリングの各段が含まれ、ファイル:行参照がある。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "eval-3-python-library",
+      "prompt": "あなたはコードリーディングを支援する立場です。Python ライブラリ encode/httpx を読みたい。私は requests ライブラリの経験があり async 構文も使えるが、httpx の内部は知らない。半日想定で、ライブラリの公開 API がどう内部のトランスポート層まで繋がっているかを把握したい。\n\n手順:\n1. /tmp/eval-3 を作り `git clone --depth=1 https://github.com/encode/httpx.git`。\n2. スコープを宣言: httpx/_*.py のうち中核モジュールに絞ること。半日想定。\n3. 出力先ディレクトリに以下を保存:\n   - 01_summary.md (ライブラリ種類、公開エントリ、依存)\n   - 02_architecture.md (Mermaid: Client (sync/async) ↔ Transport ↔ HTTPCore ↔ Auth/Cookies/Redirects の関係)\n   - 03_domain.md (主要型: Client, Request, Response, Transport, URL, Auth など5-10個とその関係)\n   - 04_flow.md (代表フロー: `httpx.get('https://example.com')` を呼んでから Response が返るまでの Mermaid シーケンス図、ファイル:行と関数名)\n   - 05_concerns.md (例外階層、リトライ/タイムアウト、認証フック、async と sync の共通化 を各2-4行)\n   - UNDERSTANDING.md (統合)\n4. 出力は必ず指定ディレクトリへ書き出すこと。\n\nテストは公開仕様として活用してよい。網羅読解は禁止。公開 API → トランスポート の1本を確実に追うことを優先。",
+      "expected_output": "スコープ宣言 + 6ファイル。Phase 4 でクライアント呼び出しからトランスポート層までの呼び出し連鎖がファイル:行付きで描かれている。",
+      "files": []
+    }
+  ]
+}

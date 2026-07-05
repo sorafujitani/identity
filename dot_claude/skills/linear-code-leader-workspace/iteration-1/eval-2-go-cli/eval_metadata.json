@@ -1,0 +1,6 @@
+{
+  "eval_id": 2,
+  "eval_name": "eval-2-go-cli",
+  "prompt": "charmbracelet/glow (Go CLI) を読み、`glow README.md` の実行フローを完全に追えるレベルの理解ガイドを出力する。",
+  "assertions": []
+}

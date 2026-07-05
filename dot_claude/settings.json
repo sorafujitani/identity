@@ -1,0 +1,95 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Read",
+      "Bash",
+      "WebFetch",
+      "WebSearch",
+      "Task",
+      "Skill"
+    ],
+    "deny": [],
+    "defaultMode": "auto"
+  },
+  "model": "claude-fable-5[1m]",
+  "enableAllProjectMcpServers": false,
+  "allowedMcpServers": [],
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/fujitanisora/brain/.hooks/inject-brain.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/fujitanisora/brain/.hooks/auto-index-brain.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "code-simplifier@claude-plugins-official": true,
+    "context7@claude-plugins-official": false,
+    "document-skills@anthropic-agent-skills": true,
+    "example-skills@anthropic-agent-skills": true,
+    "firebase@firebase": false,
+    "frontend-design@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "serena@claude-plugins-official": false,
+    "slack@claude-plugins-official": false,
+    "typescript-lsp@claude-plugins-official": true,
+    "warp@claude-code-warp": true,
+    "linear@claude-plugins-official": false
+  },
+  "extraKnownMarketplaces": {
+    "firebase": {
+      "source": {
+        "source": "github",
+        "repo": "firebase/firebase-tools"
+      }
+    },
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    }
+  },
+  "language": "ja",
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "medium",
+  "plansDirectory": ".claude/plans/",
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark-ansi",
+  "editorMode": "vim",
+  "remoteControlAtStartup": false,
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "`~/.claude` ディレクトリ配下の git リポジトリ (= ユーザー個人の dotfiles リポジトリ https://github.com/fs0414/claudedot) への `git push origin main` および同等コマンド (`git -C ~/.claude push origin main` を含む) は事前承認済み。ソロ管理で PR レビュープロセスを通さない運用ポリシーのため main への直接 push は通常運用。他のリポジトリへの main 直接 push にはこの事前承認は適用しない。"
+    ]
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1753944274983
+  },
+  "planMode": {
+    "outputLanguage": "japanese"
+  }
+}

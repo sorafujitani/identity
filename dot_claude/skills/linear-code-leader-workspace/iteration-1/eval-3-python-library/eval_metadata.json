@@ -1,0 +1,6 @@
+{
+  "eval_id": 3,
+  "eval_name": "eval-3-python-library",
+  "prompt": "encode/httpx (Python HTTP ライブラリ) を読み、httpx.get() からトランスポート層まで繋がる経路を理解できる成果物を出力する。",
+  "assertions": []
+}
