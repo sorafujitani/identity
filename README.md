@@ -1,33 +1,34 @@
 # identity
 
-sorafujitani の dotfiles。[chezmoi](https://www.chezmoi.io/) で管理する。
+Dotfiles managed with [chezmoi](https://www.chezmoi.io/).
 
-以下の分散していた repo を統合したもの。
+## What's inside
 
-| 旧 repo | 管理対象 |
+| Path | Description |
 |---|---|
-| neovimdot | `~/.config/nvim` |
-| ghosttydot | `~/.config/ghostty` |
-| herdrdot | `~/.config/herdr` |
-| weztermdot | `~/.config/wezterm` |
-| codexdot | `~/.codex`（AGENTS.md / agents / hooks.json / herdr-agent-state.sh / plans） |
+| `~/.config/nvim` | Neovim |
+| `~/.config/wezterm` | WezTerm |
+| `~/.config/ghostty` | Ghostty |
+| `~/.config/herdr` | herdr |
+| `~/.codex` | Codex CLI (AGENTS.md, agents, hooks, plans) |
+| `~/.claude` | Claude Code user scope (CLAUDE.md, settings, agents, commands, skills) |
 
-## セットアップ
+## Setup
 
 ```sh
 brew install chezmoi
 chezmoi init https://github.com/sorafujitani/identity.git
-chezmoi diff    # 適用内容の確認
+chezmoi diff    # preview
 chezmoi apply
 ```
 
-## 日常操作
+## Daily usage
 
 ```sh
-chezmoi add ~/.config/nvim/init.lua   # ローカルの変更をソースに取り込む
-chezmoi diff                          # ソースとローカルの差分
-chezmoi apply                         # ソースをローカルに反映
-chezmoi cd                            # ソース repo (このrepo) に入って git 操作
+chezmoi add <file>   # capture local changes into the source
+chezmoi diff         # diff between source and local
+chezmoi apply        # apply source to local
+chezmoi cd           # enter the source repo for git operations
 ```
 
-ソースディレクトリは `~/.local/share/chezmoi`。`dot_` プレフィックスが `.` に対応する（`dot_config/nvim` → `~/.config/nvim`）。
+The source directory is `~/.local/share/chezmoi`. The `dot_` prefix maps to `.` (`dot_config/nvim` → `~/.config/nvim`).
