@@ -1,6 +1,4 @@
-# identity
-
-Dotfiles managed with [chezmoi](https://www.chezmoi.io/).
+dotfiles managed with [chezmoi](https://www.chezmoi.io/).
 
 ## What's inside
 
@@ -31,7 +29,7 @@ chezmoi diff    # preview
 chezmoi apply
 ```
 
-## Daily usage
+## Usage
 
 ```sh
 chezmoi add <file>   # capture local changes into the source
