@@ -114,6 +114,34 @@ mutation UpdateIssue($id: String!, $input: IssueUpdateInput!) {
 }
 ```
 
+**Create comment:**
+```graphql
+mutation CreateComment($input: CommentCreateInput!) {
+  commentCreate(input: $input) {
+    success
+    comment { id url }
+  }
+}
+```
+Variables: `{"input": {"issueId": "ISSUE_UUID", "body": "markdown body"}}`
+
+**Create relation (required before marking an issue Duplicate):**
+```graphql
+mutation CreateRelation($input: IssueRelationCreateInput!) {
+  issueRelationCreate(input: $input) {
+    success
+    issueRelation { id type }
+  }
+}
+```
+Variables: `{"input": {"issueId": "ISSUE_UUID", "relatedIssueId": "CANONICAL_UUID", "type": "duplicate"}}`
+Then set the duplicate issue's state via `issueUpdate`.
+
+**Fetch a single issue by identifier** — `IssueFilter` does not support `identifier`; pass it as `id`:
+```graphql
+query { issue(id: "TAS-123") { id identifier title description state { name } } }
+```
+
 ## Rate Limiting
 
 Monitor HTTP status codes and handle rate limits appropriately. For real-time updates, Linear recommends using webhooks instead of polling.

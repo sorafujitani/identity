@@ -1,5 +1,5 @@
 ---
-name: Linear
+name: linear
 description: Managing Linear issues, projects, and teams. Use when working with Linear tasks, creating issues, updating status, querying projects, or managing team workflows.
 allowed-tools:
   - mcp__linear
@@ -83,6 +83,24 @@ Scripts provide full type hints and are easier to debug than raw GraphQL for mul
 ## GraphQL API
 
 **Fallback only.** Use when operations aren't supported by MCP or SDK. See `api.md` for documentation on using the Linear GraphQL API directly.
+
+### linearx CLI fallback
+
+The local `linearx` wrapper currently fails on an internal `jq --argjson` error (`linearx issue`, `linearx query` both die). If it errors, do not retry or debug it mid-task. Fall back immediately:
+
+1. Get the API key from Keychain into a shell variable first, then use it in the header. Expanding it inline on the same line as the assignment yields an empty value (known trap). Never print the key.
+   ```bash
+   LINEAR_API_KEY=$(security find-generic-password -s linear-api-key -w)
+   curl -s https://api.linear.app/graphql \
+     -H "Authorization: $LINEAR_API_KEY" -H "Content-Type: application/json" \
+     -d '{"query": "..."}'
+   ```
+2. Known API gotchas, verified in past sessions:
+   - `IssueFilter` does not support `identifier`. Fetch a single issue with `issue(id: "TAS-123")` — the identifier works as `id`.
+   - Marking an issue as Duplicate requires creating the duplicate relation first, then the state change.
+   - Project lookups by slug return empty lists. Use the project **UUID**.
+   - Review-comment replies via REST return 404; use GraphQL `reviewThread` mutations (GitHub-side lesson that also applies to Linear comment threading: prefer GraphQL).
+3. Working minimal templates for the common mutations (description update, comment create, relation create) live in `api.md`. Extend `api.md` when you hand-build a new one, so the next session reuses it instead of rediscovering it.
 
 ### Ad-Hoc Queries
 

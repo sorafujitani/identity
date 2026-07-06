@@ -40,6 +40,7 @@ argument-hint: "[PR-url, branch-name, or empty for current branch]"
 - PR URL → `Task(ctx:github)` で構造化情報取得
 - ブランチ → `git diff` で差分取得
 - 変更ファイル一覧と変更行数を把握
+- **未追跡ファイルを必ず含める**: `git diff` は未追跡（新規）ファイルを出力しない。`git status --short` の `??` と `git ls-files --others --exclude-standard` で新規ファイルを列挙し、内容を直接 Read してレビュー対象に加える。新規 useCase / service / test 本体が未追跡のまま diff だけ見て本体を見落とす事故が多発している
 
 **Step 2: 言語・フレームワーク自動検出**
 - [lang-detection.md](references/lang-detection.md) に従い、設定ファイルを `Glob` → `Read` で検出

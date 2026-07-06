@@ -7,7 +7,16 @@
 - ユーザーへの説明、応答、エラーメッセージは全て日本語で提供
 - コード内のコメントは各プロジェクトの規約に従う
 - commit messageはシンプルさ, 次に伝達性を重視します
-- 
+
+## コーディング規約（全repo共通）
+- コメントは最小限。書くのは why だけ。仕様・意図は命名とテストで表現する
+- 実装のまとまりごとに、新しい context window の subagent でレビューを起動し、指摘を自律的に改善してから次へ進む
+
+## 成果物のルール
+- 外部に残る文面（PR本文・issue・release note・README）に AI 署名・絵文字・定型フッターを入れない
+- 言語: toridori 系リポジトリは日本語、OSS・公開個人リポ（github.com/sorafujitani/*, fs0414/* など）は英語
+- commit / push は明示的な指示があるまで行わない。ファイル編集までは進めてよい
+- 解説HTMLなどリポジトリ外の生成物は `~/Downloads/` に置く。Desktop には置かない
 
 ## Brain（永続メモリ / brainmaxxing）
 `/Users/fujitanisora/brain/` は全セッション共通の永続メモリ（Obsidian vault）。Codex と共有している（`~/.claude/brain` と `~/.codex/brain` は実体への symlink。既存のパス参照は symlink 経由でそのまま動く）。
