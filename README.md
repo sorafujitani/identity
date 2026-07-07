@@ -11,6 +11,7 @@ dotfiles managed with [chezmoi](https://www.chezmoi.io/).
 | `~/.codex` | Codex CLI (AGENTS.md, agents, hooks, plans) |
 | `~/.claude` | Claude Code user scope (CLAUDE.md, settings, agents, commands, skills) |
 | `~/.config/home-manager`, `~/.config/nix` | Nix / home-manager |
+| `~/.pi/agent` | Pi agent settings and themes |
 | `~/.zshrc`, `~/.zshenv`, `~/.zprofile`, `~/.config/zeno` | zsh |
 
 ## Never add these

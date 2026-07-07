@@ -1,0 +1,7 @@
+{
+  "lastChangelogVersion": "0.80.3",
+  "theme": "aqua-blue",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-fable-5",
+  "defaultThinkingLevel": "minimal"
+}
