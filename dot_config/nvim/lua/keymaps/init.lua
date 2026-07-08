@@ -35,5 +35,4 @@ vim.keymap.set("n", "<Leader>try", [[:normal! Vito try {\r} catch (err) {\r    c
 require("keymaps.lsp")
 require("keymaps.picker")
 require("keymaps.git")
-require("keymaps.file-explorer")
 require("keymaps.terminal")

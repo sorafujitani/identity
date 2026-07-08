@@ -9,10 +9,13 @@ vim.opt.fileencoding = "utf-8"
 -- スワップファイルを使用しない
 vim.opt.swapfile = false
 
+-- 長い行の構文ハイライトを打ち切って描画コストを抑える
+vim.opt.synmaxcol = 300
+
 -- 外部からのファイル変更を自動的に読み込む (autocmds.lua の checktime トリガと併用)
 vim.opt.autoread = true
 
--- CursorHold が発火するまでの時間 (ms): 短めにして外部変更検知を素早く
+-- CursorHold が発火するまでの時間 (ms)。外部変更検知は file-watch.lua の fs_event が担う
 vim.opt.updatetime = 250
 
 -- ヘルプ言語を日本語に設定

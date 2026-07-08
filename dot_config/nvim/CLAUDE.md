@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal Neovim configuration for macOS. Plugin management via Lazy.nvim, using Neovim 0.11+ built-in LSP features.
 
+This directory is managed by chezmoi. The source repository is github.com/sorafujitani/dotfiles (`~/.local/share/chezmoi/dot_config/nvim/`). Edit files here, then sync with `chezmoi re-add ~/.config/nvim`. Deleted files must also be removed from the source state with `chezmoi forget`.
+
 ## Commands
 
 ```bash
@@ -36,22 +38,20 @@ init.lua                    # Entry point
 ├── lua/core/
 │   ├── options.lua         # vim.opt settings (leader=" ")
 │   ├── autocmds.lua        # Autocommands
-│   └── commands.lua        # Custom commands (Sed, Cfp, Crp, Fmt, etc.)
+│   ├── commands.lua        # Custom commands (Sed, Cfp, Crp, Fmt, etc.)
+│   └── file-watch.lua      # libuv fs_event によるバッファ監視
 ├── lua/keymaps/
 │   ├── init.lua            # Base keymaps + submodule loader
 │   ├── lsp.lua             # LSP keymaps ([d, ]d, gi, gt, <leader>a, etc.)
 │   ├── picker.lua          # snacks.picker (gd, gr, <C-p>, <C-g>, etc.)
 │   ├── git.lua             # Git operations
-│   ├── file-explorer.lua   # Oil.nvim
-│   ├── terminal.lua        # ToggleTerm
+│   ├── terminal.lua        # snacks.terminal
 │   ├── debug.lua           # DAP (lazy-loaded)
 │   └── test.lua            # Neotest (lazy-loaded)
 ├── lua/lsp/
 │   ├── init.lua            # Enable servers via vim.lsp.enable()
-│   ├── diagnostics.lua     # Diagnostic settings
-│   └── hover.lua           # Hover settings
+│   └── diagnostics.lua     # Diagnostic settings
 ├── lua/plugins/
-│   ├── init.lua            # Plugin config loader
 │   └── *.lua               # Per-plugin configuration
 ├── lua/ui/
 │   └── highlights.lua      # Highlight settings
@@ -74,20 +74,23 @@ return {
 }
 ```
 
-Enabled servers: lua_ls, ts_ls, denols, biome, rust_analyzer, ruby_lsp, gopls
+Enabled servers: lua_ls, ts_ls, denols, biome, rust_analyzer, ruby_lsp, rfmt, gopls, ty, nil_ls
 
 **Note:** denols only starts when `deno.json` is present (via root_markers)
 
 ## Lazy Loading Strategy
 
-- **Immediate**: colorscheme, treesitter, snacks, blink.cmp, lualine, mini.icons
-- **VeryLazy**: denops, nerdfont
-- **BufReadPost**: auto-save
-- **BufReadPre**: gitsigns, hlchunk
-- **InsertEnter**: autopairs, snippy, copilot
+Default is `lazy = true`; snacks loads on first `require("snacks")` (keymaps etc.).
+
+- **Immediate** (`lazy = false`): vim-orbital (colorscheme)
+- **VeryLazy**: lualine, flash, mini.surround, nerdfont
+- **BufReadPost / BufNewFile**: treesitter (main branch, highlight/indent は FileType autocmd で起動), auto-save (okuuva/auto-save.nvim)
+- **BufReadPre**: gitsigns
+- **InsertEnter**: blink.cmp, mini.snippets, mini.pairs, copilot
 - **TextYankPost**: vim-yoink
-- **Keys**: Comment.nvim (`gc`), Oil (`<S-e>`)
-- **Commands**: DAP, Neotest, LazyGit, GrugFar, etc.
+- **ft**: render-markdown (markdown), lazydev (lua), nvim-dap-go (go)
+- **Keys**: mini.comment (`gc`), Oil (`<S-e>`), flash (`s` / `S`)
+- **Commands**: Rg, Git/GitBlame, Neogit, Diffview, BlameToggle, Atac, RaySo, Fyler, ConformInfo, Neotest, MiniTest
 - DAP/Neotest are manually loaded via `:DapLoad` / `:NeotestLoad`
 
 ## Key Bindings

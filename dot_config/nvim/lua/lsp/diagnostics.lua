@@ -14,12 +14,6 @@ vim.diagnostic.config({
 			local code = diagnostic.code or ""
 			local source = diagnostic.source or ""
 
-			-- oxlintのルールにドキュメントURLを追加
-			if (source == "oxlint" or source == "oxc") and type(code) == "string" and code:match("/") then
-				local url = "https://oxc.rs/docs/guide/usage/linter/rules/" .. code .. ".html"
-				return string.format("%s [%s]\n📖 %s", message, code, url)
-			end
-
 			-- biomeのルールにドキュメントURLを追加
 			if source == "biome" and type(code) == "string" and code:match("/") then
 				local url = "https://biomejs.dev/linter/rules/"

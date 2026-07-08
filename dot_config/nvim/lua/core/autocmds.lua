@@ -17,8 +17,8 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- 別セッション (agent/CLI/他エディタ) のファイル変更を再起動なしで取り込む
 local reload_group = vim.api.nvim_create_augroup("AutoReload", { clear = true })
 
--- フォーカス取得時・バッファ移動時・アイドル時に checktime を実行
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "TermLeave" }, {
+-- フォーカス取得時・バッファ移動時に checktime を実行 (アイドル時の検知は file-watch.lua の fs_event が担うため CursorHold は不要)
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "TermLeave" }, {
 	group = reload_group,
 	callback = function()
 		-- コマンドラインや cmdwin 中は触らない (UI が壊れるため)

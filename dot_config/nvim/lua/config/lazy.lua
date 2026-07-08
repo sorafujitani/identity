@@ -1,4 +1,3 @@
-local vim = vim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -22,15 +21,31 @@ require("lazy").setup({
   -- treesitter（ファイルを開いてから読み込み — 起動時コストを避ける）
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter").setup({
-        ensure_installed = {
-          "lua", "javascript", "typescript", "tsx", "rust", "go", "ruby",
-          "html", "css", "json", "yaml", "toml", "markdown", "markdown_inline", "bash", "vim", "vimdoc", "python", "nix",
-        },
-        auto_install = true,
+      require("nvim-treesitter").setup({})
+      -- 非同期インストール。導入済み parser はスキップされるため初回のみ実質動く
+      require("nvim-treesitter").install({
+        "lua", "javascript", "typescript", "tsx", "rust", "go", "ruby",
+        "html", "css", "json", "yaml", "toml", "markdown", "markdown_inline", "bash", "vim", "vimdoc", "python", "nix",
+      })
+      -- main には highlight/indent module が無いため FileType で自前起動する
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter-start", { clear = true }),
+        callback = function(ev)
+          -- 100KB 超はパースが重くなるためハイライト無効化
+          local name = vim.api.nvim_buf_get_name(ev.buf)
+          local ok, stat = pcall(vim.uv.fs_stat, name)
+          if ok and stat and stat.size > 100 * 1024 then
+            return
+          end
+          -- parser が無い filetype は pcall で無視
+          if pcall(vim.treesitter.start, ev.buf) then
+            vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
       })
     end,
   },
@@ -41,7 +56,7 @@ require("lazy").setup({
   -- (ハイライト色は ui/highlights.lua で orbital に合わせて設定)
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "md" },
+    ft = { "markdown" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.icons",
@@ -133,36 +148,41 @@ require("lazy").setup({
 
   -- autosave (バッファ読み込み時)
   {
-    "Pocco81/auto-save.nvim",
+    "okuuva/auto-save.nvim",
     event = "BufReadPost",
-    config = function()
-      require("auto-save").setup({
-        condition = function(buf)
-          -- バッファが有効かチェック
-          if not vim.api.nvim_buf_is_valid(buf) then
-            return false
-          end
+    opts = {
+      trigger_events = {
+        immediate_save = { "BufLeave", "FocusLost" },
+        -- デフォルトの TextChanged はノーマルモードの編集ごとに発火してディスク I/O になるため外す
+        defer_save = { "InsertLeave" },
+        cancel_deferred_save = { "InsertEnter" },
+      },
+      -- 旧設定 (Pocco81) の保存感覚に合わせる (デフォルト 1000ms は体感が変わる)
+      debounce_delay = 135,
+      condition = function(buf)
+        if not vim.api.nvim_buf_is_valid(buf) then
+          return false
+        end
 
-          local fn = vim.fn
-          -- 除外するファイルタイプ
-          local excluded_filetypes = { "oil", "gitcommit", "gitrebase", "hgcommit", "snacks_input" }
-          local ok, filetype = pcall(fn.getbufvar, buf, "&filetype")
-          if not ok or vim.tbl_contains(excluded_filetypes, filetype) then
-            return false
-          end
-          -- 除外するバッファタイプ
-          local ok2, buftype = pcall(fn.getbufvar, buf, "&buftype")
-          if not ok2 or buftype ~= "" then
-            return false
-          end
-          -- 大きすぎるファイルは除外 (1MB以上)
-          if fn.getfsize(fn.expand("%")) > 1000000 then
-            return false
-          end
-          return true
-        end,
-      })
-    end,
+        local fn = vim.fn
+        -- 除外するファイルタイプ
+        local excluded_filetypes = { "oil", "gitcommit", "gitrebase", "hgcommit", "snacks_input" }
+        local ok, filetype = pcall(fn.getbufvar, buf, "&filetype")
+        if not ok or vim.tbl_contains(excluded_filetypes, filetype) then
+          return false
+        end
+        -- 除外するバッファタイプ
+        local ok2, buftype = pcall(fn.getbufvar, buf, "&buftype")
+        if not ok2 or buftype ~= "" then
+          return false
+        end
+        -- 大きすぎるファイルは除外 (1MB以上)。カレントバッファではなく引数の buf で判定する
+        if fn.getfsize(vim.api.nvim_buf_get_name(buf)) > 1000000 then
+          return false
+        end
+        return true
+      end,
+    },
   },
 
   -- search/replace
@@ -185,13 +205,13 @@ require("lazy").setup({
         git.setup({
           keymaps = {
             blame = "<Leader>gb",
-            browse = "<Leader>go",
+            -- browse は snacks.gitbrowse (<leader>go) に統一
+            browse = "",
           },
         })
       end
     end,
   },
-  { "kdheepak/lazygit.nvim", cmd = "LazyGit" },
   {
     "NeogitOrg/neogit",
     dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },

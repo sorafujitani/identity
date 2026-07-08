@@ -32,16 +32,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = args.buf }
 
 		-- hover/signature
+		-- 幅未指定だと画面右端で見切れるため、画面幅基準で確保して折り返す
 		vim.keymap.set("n", "K", function()
-			vim.lsp.buf.hover({ border = "rounded" })
+			vim.lsp.buf.hover({
+				border = "rounded",
+				max_width = math.floor(vim.o.columns * 0.85),
+				max_height = math.floor(vim.o.lines * 0.6),
+				-- カーソル上下の空き行数で高さがクランプされるため、収まる側を優先
+				anchor_bias = "below",
+			})
 		end, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
 
 		vim.keymap.set("n", "<C-k>", function()
-			vim.lsp.buf.signature_help({ border = "rounded" })
+			vim.lsp.buf.signature_help({
+				border = "rounded",
+				max_width = math.floor(vim.o.columns * 0.85),
+			})
 		end, vim.tbl_extend("force", opts, { desc = "Signature help" }))
 
 		-- diagnostic float
-		vim.keymap.set("n", "<leader>d", function()
+		vim.keymap.set("n", "<leader>dd", function()
 			vim.diagnostic.open_float({ border = "rounded" })
 		end, vim.tbl_extend("force", opts, { desc = "Diagnostic float" }))
 

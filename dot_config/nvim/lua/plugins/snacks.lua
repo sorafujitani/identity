@@ -2,6 +2,10 @@
 local Snacks = require("snacks")
 
 Snacks.setup({
+	-- 巨大ファイルで重い機能を自動無効化 (opts に書いたモジュールのみ有効になる)
+	bigfile = {
+		enabled = true,
+	},
 	-- インデントガイド無効
 	indent = {
 		enabled = false,

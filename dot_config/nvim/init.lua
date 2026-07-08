@@ -17,9 +17,6 @@ require("keymaps")
 -- LSP
 require("lsp")
 
--- Plugin configurations
-require("plugins")
-
 -- DAP/Neotest (遅延読み込み)
 vim.api.nvim_create_user_command("DapLoad", function()
 	require("plugins.dap")

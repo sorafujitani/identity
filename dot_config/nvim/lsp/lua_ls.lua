@@ -7,8 +7,8 @@ return {
     Lua = {
       runtime = { version = 'LuaJIT' },
       diagnostics = {
+        -- globals は .luarc.json 側で一元管理 (重複キーは .luarc.json が勝つため)
         unusedLocalExclude = { '_*' },
-        globals = { 'vim', 'require' },
       },
       workspace = {
         checkThirdParty = false,

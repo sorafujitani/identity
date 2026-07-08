@@ -1,18 +1,9 @@
 -- DAP (デバッガ) 設定
 local dap = require("dap")
 
-require("mason-nvim-dap").setup({
-	handlers = {
-		function(config)
-			require("mason-nvim-dap").default_setup(config)
-		end,
-	},
-	ensure_installed = { "node2" },
-})
-
 -- Go adapter
 dap.adapters.go = function(callback)
-	local stdout = vim.loop.new_pipe(false)
+	local stdout = vim.uv.new_pipe(false)
 	local handle
 	local pid_or_err
 	local port = 38697
@@ -21,7 +12,7 @@ dap.adapters.go = function(callback)
 		args = { "dap", "-l", "127.0.0.1:" .. port },
 		detached = true,
 	}
-	handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
+	handle, pid_or_err = vim.uv.spawn("dlv", opts, function(code)
 		stdout:close()
 		handle:close()
 		if code ~= 0 then
@@ -68,7 +59,7 @@ dap.configurations.go = {
 
 -- JavaScript/TypeScript adapter
 require("dap-vscode-js").setup({
-	debugger_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/vscode-js-debug",
+	debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
 	adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost", "node" },
 })
 
@@ -126,7 +117,7 @@ require("dapui").setup({
 		repl = "r",
 		toggle = "t",
 	},
-	expand_lines = vim.fn.has("nvim-0.7") == 1,
+	expand_lines = true,
 	layouts = {
 		{
 			elements = {

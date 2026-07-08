@@ -172,8 +172,6 @@ local function setup_lsp_highlights()
 	-- Float
 	vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#808080", bg = "NONE" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#e0e0e0", bg = "NONE" })
-	vim.api.nvim_set_hl(0, "LspHoverNormal", { fg = "#ffffff", bg = "NONE" })
-	vim.api.nvim_set_hl(0, "LspHoverBorder", { fg = "#808080", bg = "NONE" })
 
 	-- Diagnostic
 	vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { underline = true, sp = "#ff5555" })

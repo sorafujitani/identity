@@ -7,7 +7,10 @@ local function project_name()
 end
 
 -- rebase / merge / cherry-pick 中の警告
-local function git_operation()
+-- refresh 毎の finddir + stat はコストが高いため、イベント時のみ再計算してキャッシュを返す
+local git_operation_cache = ""
+
+local function compute_git_operation()
 	local git_dir = vim.fn.finddir(".git", ".;")
 	if git_dir == "" then
 		return ""
@@ -22,6 +25,10 @@ local function git_operation()
 		return "CHERRY-PICK"
 	end
 	return ""
+end
+
+local function git_operation()
+	return git_operation_cache
 end
 
 -- LSP 進捗 (vim.lsp.status)
@@ -51,7 +58,10 @@ local function copilot_status()
 end
 
 -- workspace 全体の diagnostics 集計 (0件なら空)
-local function workspace_diagnostics()
+-- refresh 毎に全バッファを走査しないよう、DiagnosticChanged 時のみ再計算してキャッシュを返す
+local workspace_diagnostics_cache = ""
+
+local function compute_workspace_diagnostics()
 	local errors = #vim.diagnostic.get(nil, { severity = vim.diagnostic.severity.ERROR })
 	local warns = #vim.diagnostic.get(nil, { severity = vim.diagnostic.severity.WARN })
 	local parts = {}
@@ -63,6 +73,30 @@ local function workspace_diagnostics()
 	end
 	return table.concat(parts, " ")
 end
+
+local function workspace_diagnostics()
+	return workspace_diagnostics_cache
+end
+
+-- VeryLazy ロードでは初回 BufEnter / 既出の DiagnosticChanged を取り逃すため、ロード時に一度計算しておく
+git_operation_cache = compute_git_operation()
+workspace_diagnostics_cache = compute_workspace_diagnostics()
+
+local statusline_group = vim.api.nvim_create_augroup("StatuslineCache", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged", "FocusGained" }, {
+	group = statusline_group,
+	callback = function()
+		git_operation_cache = compute_git_operation()
+	end,
+})
+
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
+	group = statusline_group,
+	callback = function()
+		workspace_diagnostics_cache = compute_workspace_diagnostics()
+	end,
+})
 
 -- マクロ記録中の表示
 local function macro_recording()

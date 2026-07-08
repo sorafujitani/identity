@@ -47,12 +47,17 @@ local function setup_lsp()
 	-- Diagnostic設定
 	require("lsp.diagnostics")
 
-	-- Hover設定
+	-- Hover表示の調整
 	require("lsp.hover")
 
-	-- グローバル設定
+	-- グローバル設定 (blink.cmp の補完 capabilities をマージ)
+	local caps = make_capabilities()
+	local ok, blink = pcall(require, "blink.cmp")
+	if ok then
+		caps = blink.get_lsp_capabilities(caps)
+	end
 	vim.lsp.config("*", {
-		capabilities = make_capabilities(),
+		capabilities = caps,
 	})
 
 	vim.lsp.config("biome", { on_attach = linter_on_attach })

@@ -112,7 +112,3 @@ blink.setup({
 		enabled = false,
 	},
 })
-
-return {
-	capabilities = blink.get_lsp_capabilities(),
-}
