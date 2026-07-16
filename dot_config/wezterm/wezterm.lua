@@ -17,13 +17,16 @@ end
 config.automatically_reload_config = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2001 }
+-- herdr の prefix (ctrl+a) と競合するため無効化
+-- config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2001 }
 
 config.font_size = 14.0
 config.font = wezterm.font("Hack Nerd Font", { weight = "Regular", stretch = "Normal", style = "Normal" })
 
 config.color_scheme = "Ef-Night"
 local scheme = wezterm.color.get_builtin_schemes()[config.color_scheme]
+-- 透過で壁紙の暖色が透けて黄味がかって見えるため、背景を blue 寄りに補正
+scheme.background = "#000812"
 
 wezterm.on("update-right-status", function(window)
 	local agents = agent.scan()
@@ -54,6 +57,10 @@ end)
 
 config.use_ime = true
 
+-- herdr が cmd 修飾キー (cmd+arrows, cmd+ctrl+arrows) を受け取れるように
+-- kitty keyboard protocol の要求を許可する
+config.enable_kitty_keyboard = true
+
 -- レンダリング最適化 (Apple Silicon / macOS Sonoma 前提)
 config.front_end = "WebGpu"
 -- webgpu_power_preference: Apple Silicon は GPU adapter が単一のため no-op。
@@ -71,6 +78,21 @@ config.window_background_opacity = 0.92
 -- 美観を取り戻したくなったら 10〜20 程度に戻す (ただし render 遅延と引き換え)。
 config.macos_window_background_blur = 0
 
+-- マウスホイール1ノッチあたり3行スクロール
+-- (scroll_wheel_ratio という設定は存在しないため mouse_bindings で実現)
+config.mouse_bindings = {
+	{
+		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+		mods = "NONE",
+		action = act.ScrollByLine(-3),
+	},
+	{
+		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+		mods = "NONE",
+		action = act.ScrollByLine(3),
+	},
+}
+
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
 config.window_decorations = "RESIZE"
@@ -81,6 +103,7 @@ config.command_palette_fg_color = scheme.foreground
 config.command_palette_font_size = 18.0
 
 config.colors = {
+	background = scheme.background,
 	tab_bar = {
 		inactive_tab_edge = "none",
 		background = scheme.background,
@@ -125,47 +148,50 @@ config.keys = {
 	{ key = "RightArrow", mods = "SHIFT", action = act.ActivatePaneDirection("Right") },
 	{ key = "UpArrow", mods = "SHIFT", action = act.ActivatePaneDirection("Up") },
 	{ key = "DownArrow", mods = "SHIFT", action = act.ActivatePaneDirection("Down") },
-	{ key = "LeftArrow", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
-	{ key = "RightArrow", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
+	-- herdr の pane 移動 (cmd+arrows) と競合するため無効化
+	-- { key = "LeftArrow", mods = "CMD", action = act.SwitchWorkspaceRelative(-1) },
+	-- { key = "RightArrow", mods = "CMD", action = act.SwitchWorkspaceRelative(1) },
 	{ key = "9", mods = "ALT", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 	{ key = "Enter", mods = "SHIFT", action = act.SendString("\n") },
-	{ key = "n", mods = "CTRL", action = act.TogglePaneZoomState },
-	-- Select a command via fuzzy finder and run it in an overlay pane
-	{
-		key = "l",
-		mods = "LEADER",
-		action = act.InputSelector({
-			title = "Launcher",
-			choices = (function()
-				local choices = {}
-				for _, item in ipairs(launcher_choices) do
-					table.insert(choices, { label = item.label })
-				end
-				return choices
-			end)(),
-			action = wezterm.action_callback(function(window, pane, _id, label)
-				if not label then
-					return
-				end
-				for _, item in ipairs(launcher_choices) do
-					if item.label == label then
-						local new_pane = pane:split({
-							direction = "Bottom",
-							args = { os.getenv("SHELL") or "/bin/zsh", "-ic", item.command },
-						})
-						window:perform_action(act.TogglePaneZoomState, new_pane)
-						return
-					end
-				end
-			end),
-		}),
-	},
-	-- Agent dashboard: list all running agents across workspaces
-	{
-		key = "a",
-		mods = "LEADER",
-		action = agent.tui_dashboard_action(),
-	},
+	-- ctrl+n は herdr の pane zoom (keys.zoom) に割り当てているため、
+	-- WezTerm では奪わずに herdr へ届かせる
+	-- { key = "n", mods = "CTRL", action = act.TogglePaneZoomState },
+	-- leader 無効化に伴い LEADER 系バインドも無効化 (launcher / agent dashboard は
+	-- command palette (cmd+shift+p) から引き続き利用可能)
+	-- {
+	-- 	key = "l",
+	-- 	mods = "LEADER",
+	-- 	action = act.InputSelector({
+	-- 		title = "Launcher",
+	-- 		choices = (function()
+	-- 			local choices = {}
+	-- 			for _, item in ipairs(launcher_choices) do
+	-- 				table.insert(choices, { label = item.label })
+	-- 			end
+	-- 			return choices
+	-- 		end)(),
+	-- 		action = wezterm.action_callback(function(window, pane, _id, label)
+	-- 			if not label then
+	-- 				return
+	-- 			end
+	-- 			for _, item in ipairs(launcher_choices) do
+	-- 				if item.label == label then
+	-- 					local new_pane = pane:split({
+	-- 						direction = "Bottom",
+	-- 						args = { os.getenv("SHELL") or "/bin/zsh", "-ic", item.command },
+	-- 					})
+	-- 					window:perform_action(act.TogglePaneZoomState, new_pane)
+	-- 					return
+	-- 				end
+	-- 			end
+	-- 		end),
+	-- 	}),
+	-- },
+	-- {
+	-- 	key = "a",
+	-- 	mods = "LEADER",
+	-- 	action = agent.tui_dashboard_action(),
+	-- },
 }
 
 wezterm.on("augment-command-palette", function()

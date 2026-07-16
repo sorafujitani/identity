@@ -1,0 +1,8 @@
+# terminal の背景色をそのまま使う
+transparent_background = true
+# terminal の明暗に合わせて light/dark テーマを自動選択
+theme = "auto"
+# agent が session comment で残した inline note をデフォルトで表示
+agent_notes = true
+# agent が working tree を編集したら開いている diff を自動リロード
+watch = true

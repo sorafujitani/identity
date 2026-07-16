@@ -1,9 +1,13 @@
+onboarding = false
 [keys]
 # Prefix used before Herdr-specific shortcuts.
 prefix = "ctrl+a"
 
 # Open the workspace navigation picker directly.
 workspace_picker = "ctrl+w"
+
+# Toggle zoom (fullscreen) for the current pane.
+zoom = "ctrl+n"
 
 # Move between panes in the current workspace.
 focus_pane_left = "cmd+left"
