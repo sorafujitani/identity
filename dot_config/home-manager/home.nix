@@ -36,7 +36,10 @@ EOF
       gql() {
         require_key
         query="$1"
-        vars="''${2:-{}}"
+        vars="''${2-}"
+        if [ -z "$vars" ]; then
+          vars='{}'
+        fi
         ${pkgs.jq}/bin/jq -nc --arg query "$query" --argjson variables "$vars" \
           '{query:$query, variables:$variables}' |
           ${pkgs.curl}/bin/curl -fsS "$api_url" \
@@ -69,17 +72,17 @@ EOF
           ;;
         query)
           shift
-          gql "$1" "''${2:-{}}"
+          gql "$1" "''${2-}"
           ;;
         issue)
           id="''${2:?issue identifier or id required}"
-          gql 'query($id:String!) { issues(filter:{or:[{identifier:{eq:$id}},{id:{eq:$id}}]}, first:1) { nodes { id identifier title description url state { name } assignee { name email } team { key name } labels { nodes { name } } } } }' \
+          gql 'query($id:String!) { issue(id:$id) { id identifier title description url state { name } assignee { name email } team { key name } labels { nodes { name } } } }' \
             "$(${pkgs.jq}/bin/jq -nc --arg id "$id" '{id:$id}')"
           ;;
         search)
           text="''${2:?search text required}"
           limit="''${3:-20}"
-          gql 'query($text:String!, $limit:Int!) { issues(filter:{or:[{title:{containsIgnoreCase:$text}},{description:{containsIgnoreCase:$text}}]}, first:$limit) { nodes { id identifier title url state { name } team { key name } assignee { name email } } } }' \
+          gql 'query($text:String!, $limit:Int!) { searchIssues(term:$text, first:$limit) { nodes { id identifier title url state { name } team { key name } assignee { name email } } } }' \
             "$(${pkgs.jq}/bin/jq -nc --arg text "$text" --argjson limit "$limit" '{text:$text,limit:$limit}')"
           ;;
         team)

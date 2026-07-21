@@ -70,7 +70,6 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.local/bin:$HOME/.config/scripts:$PATH"
 
 # mysql
 export PATH="/opt/homebrew/opt/mysql-client@8.0/bin:$PATH"
@@ -125,6 +124,9 @@ _rv_autoload_hook
 # grok
 export PATH="$HOME/.grok/bin:$PATH"
 fpath=(~/.grok/completions/zsh $fpath)
+
+# user-local commands and secret-loading wrappers take final precedence
+export PATH="$HOME/.local/bin:$HOME/.config/scripts:$PATH"
 
 # completion & keybindings
 # compinit dump を ~/.cache/zsh/ に集約 + 24h 以内なら -C で audit skip(高速化)
